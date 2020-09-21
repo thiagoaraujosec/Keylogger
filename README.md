@@ -5,9 +5,9 @@
 
 pip3 install keyboard
 
-# Edit the file pylogger.py and put your credentials,like password and emails to send the captured data
+Edit the file pylogger.py and put your credentials,like password and emails to send the captured data
 
-# Edita el archivo pylogger y pone tus credenciales como contraseñas o emails para poder mandar los datos capturados
+Edita el archivo pylogger y pone tus credenciales como contraseñas o emails para poder mandar los datos capturados
 
 python3 pylogger.py
 
